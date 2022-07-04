@@ -2,7 +2,8 @@ import { User } from "../types";
 import { ValidationError } from "../utils/error";
 import { v4 as uuid } from "uuid";
 import { pool } from "../utils/db.connection";
-import {FieldPacket} from "mysql2";
+import { FieldPacket } from "mysql2";
+import * as EmailValidator from "email-validator";
 
 type UserResults = [User[], FieldPacket[]];
 
@@ -22,6 +23,11 @@ export class UserRecord implements User {
     if (!obj.email || obj.email.length > 255) {
       throw new ValidationError("E-mail cannot be empty.");
     }
+    const result = EmailValidator.validate(obj.email);
+    if (!result) {
+      throw new ValidationError("Invalid e-mail.");
+    }
+
     if (!obj.password || obj.password.length < 5 || obj.password.length > 255) {
       throw new ValidationError(
         "The password should be longer than 5 characters."
@@ -44,12 +50,12 @@ export class UserRecord implements User {
   }
 
   static async getOne(email: string): Promise<User> {
-    const [results] = await pool.execute(
+    const [results] = (await pool.execute(
       "SELECT * FROM `user` WHERE `email` = :email",
       {
         email,
       }
-    ) as UserResults;
+    )) as UserResults;
     return results.length === 0 ? null : new UserRecord(results[0]);
   }
 }
