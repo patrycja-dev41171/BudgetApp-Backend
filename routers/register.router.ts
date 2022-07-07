@@ -1,10 +1,9 @@
 import { Router } from "express";
 import { UserRecord } from "../records/user.record";
 import { ValidationError } from "../utils/error";
-import { cipher } from "../utils/cipher";
 
 export const registerRouter = Router().post("/", async (req, res) => {
-  const { email, password } = req.body;
+  const { email } = req.body;
   const result = await UserRecord.getOne(email.toLowerCase());
 
   if (result !== null) {
