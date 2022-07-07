@@ -2,18 +2,22 @@ import express, { json } from "express";
 import cors from "cors";
 import "express-async-errors";
 import rateLimit from "express-rate-limit";
+import cookieParser from "cookie-parser";
+
 import { config } from "./config/config";
 import { handleError } from "./utils/error";
 import { registerRouter } from "./routers/register.router";
+import { loginRouter } from "./routers/login.router";
+import { refreshTokenRouter } from "./routers/refreshToken.router";
 
 const app = express();
-
 app.use(
   cors({
     origin: config.corsOrigin,
+    credentials: true,
   })
 );
-
+app.use(cookieParser());
 app.use(json());
 
 app.use(
@@ -23,8 +27,9 @@ app.use(
   })
 );
 
+app.use("/refreshToken", refreshTokenRouter);
 app.use("/register", registerRouter);
-
+app.use("/login", loginRouter);
 app.use(handleError);
 
 app.listen(3001, "0.0.0.0", () => {
