@@ -4,7 +4,7 @@ import { v4 as uuid } from "uuid";
 import { pool } from "../utils/db.connection";
 import { FieldPacket } from "mysql2";
 import * as EmailValidator from "email-validator";
-import {cipher} from "../utils/cipher";
+import { cipher } from "../utils/cipher";
 
 type UserResults = [User[], FieldPacket[]];
 
@@ -28,14 +28,13 @@ export class UserRecord implements User {
     if (!result) {
       throw new ValidationError("Invalid e-mail.");
     }
-
     if (!obj.password || obj.password.length < 5 || obj.password.length > 255) {
       throw new ValidationError(
         "The password should be longer than 5 characters."
       );
     }
 
-    this.id = uuid();
+    this.id = obj.id ?? uuid();
     this.name = obj.name;
     this.email = obj.email.toLowerCase();
     this.password = obj.password;
@@ -46,10 +45,11 @@ export class UserRecord implements User {
     const hashPassword = cipher(this.password);
     await pool.execute(
       "INSERT INTO `user`(`id`, `name`, `email`,`password`, `createdAt`) VALUES(:id," +
-        " :name,:email, :password, :createdAt)", {
+        " :name,:email, :password, :createdAt)",
+      {
         ...this,
-          password: hashPassword
-        }
+        password: hashPassword,
+      }
     );
   }
 
