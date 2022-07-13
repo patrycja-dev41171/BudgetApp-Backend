@@ -6,7 +6,7 @@ export interface LoginCreated {
 
 export interface LoginStored {
   id: string;
-  id_user: string;
+  user_id: string;
   refreshToken: string;
   createdAt: Date;
 }

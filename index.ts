@@ -9,6 +9,8 @@ import { handleError } from "./utils/error";
 import { registerRouter } from "./routers/register.router";
 import { loginRouter } from "./routers/login.router";
 import { refreshTokenRouter } from "./routers/refreshToken.router";
+import {currenciesRouter} from "./routers/currencies.router";
+import {amountRouter} from "./routers/amount.router";
 
 const app = express();
 app.use(
@@ -28,6 +30,8 @@ app.use(
 );
 
 app.use("/refreshToken", refreshTokenRouter);
+app.use("/currencies", currenciesRouter);
+app.use("/amount", amountRouter);
 app.use("/register", registerRouter);
 app.use("/login", loginRouter);
 app.use(handleError);

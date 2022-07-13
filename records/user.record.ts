@@ -62,4 +62,14 @@ export class UserRecord implements User {
     )) as UserResults;
     return results.length === 0 ? null : new UserRecord(results[0]);
   }
+
+  static async getOneById(id: string): Promise<User> {
+    const [results] = (await pool.execute(
+      "SELECT * FROM `user` WHERE `id` = :id",
+      {
+        id,
+      }
+    )) as UserResults;
+    return results.length === 0 ? null : new UserRecord(results[0]);
+  }
 }
