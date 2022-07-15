@@ -41,11 +41,10 @@ Demo link:
 
 **Database:** MySQL
 
-
-
-## Lessons Learned 🌳
-
-While building this project, I learned how to create simple React components. This was my first project using an external API. The Date object in JS was a big challenge for me, but I got to know its methods and sometimes strange behavior for someone new. Working on this project caused me a few problems, but also a lot of satisfaction from solving them.
-
-
 ## Screenshots 📷
+![](screenshots/screen1.png)
+![](screenshots/screen2.png)
+![](screenshots/screen3.png)
+![](screenshots/screen4.png)
+![](screenshots/screen5.png)
+![](screenshots/screen6.png)
