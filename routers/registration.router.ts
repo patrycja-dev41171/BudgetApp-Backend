@@ -2,7 +2,7 @@ import { Router } from "express";
 import { UserRecord } from "../records/user.record";
 import { ValidationError } from "../utils/error";
 
-export const registerRouter = Router().post("/", async (req, res) => {
+export const registrationRouter = Router().post("/", async (req, res) => {
   const { email } = req.body;
   const result = await UserRecord.getOne(email.toLowerCase());
 
