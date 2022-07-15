@@ -72,4 +72,10 @@ export class UserRecord implements User {
     )) as UserResults;
     return results.length === 0 ? null : new UserRecord(results[0]);
   }
+
+  static async deleteOneById(id: string): Promise<void> {
+    await pool.execute("DELETE  FROM `user` WHERE `id` = :id", {
+      id,
+    });
+  }
 }
