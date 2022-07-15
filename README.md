@@ -42,9 +42,11 @@ Demo link:
 **Database:** MySQL
 
 ## Screenshots 📷
-![](screenshots/screen1.png)
-![](screenshots/screen2.png)
-![](screenshots/screen3.png)
-![](screenshots/screen4.png)
-![](screenshots/screen5.png)
-![](screenshots/screen6.png)
+
+<img src="https://github.com/patrycja-dev41171/BudgetApp-Backend/blob/main/screenshots/screen1.PNG" width="150">
+<img src="https://github.com/patrycja-dev41171/BudgetApp-Backend/blob/main/screenshots/screen2.PNG" width="150">
+<img src="https://github.com/patrycja-dev41171/BudgetApp-Backend/blob/main/screenshots/screen3.PNG" width="150">
+<img src="https://github.com/patrycja-dev41171/BudgetApp-Backend/blob/main/screenshots/screen4.PNG" width="150">
+<img src="https://github.com/patrycja-dev41171/BudgetApp-Backend/blob/main/screenshots/screen5.PNG" width="150">
+<img src="https://github.com/patrycja-dev41171/BudgetApp-Backend/blob/main/screenshots/screen6.PNG" width="150">
+
