@@ -6,13 +6,19 @@ import cookieParser from "cookie-parser";
 
 import { config } from "./config/config";
 import { handleError } from "./utils/error";
-import { registerRouter } from "./routers/register.router";
+
+import { registrationRouter } from "./routers/registration.router";
 import { loginRouter } from "./routers/login.router";
 import { refreshTokenRouter } from "./routers/refreshToken.router";
-import {currenciesRouter} from "./routers/currencies.router";
-import {amountRouter} from "./routers/amount.router";
+import { currenciesRouter } from "./routers/currencies.router";
+import { balanceRouter } from "./routers/balance.router";
+import { addTransactionRouter } from "./routers/add-transaction.router";
+import { transactionHistoryRouter } from "./routers/transaction-history.router";
+import { nextTransactionsRouter } from "./routers/next-transactions.router";
+import { userRouter } from "./routers/user.router";
 
 const app = express();
+
 app.use(
   cors({
     origin: config.corsOrigin,
@@ -24,15 +30,19 @@ app.use(json());
 
 app.use(
   rateLimit({
-    windowMs: 5 * 60 * 1000, // 15 minutes
-    max: 100, // Limit each IP to 100 requests per `window` (here, per 15 minutes)
+    windowMs: 5 * 60 * 1000,
+    max: 100,
   })
 );
 
+app.use("/user", userRouter);
+app.use("/next-transactions", nextTransactionsRouter);
+app.use("/transaction-history", transactionHistoryRouter);
+app.use("/add-transaction", addTransactionRouter);
 app.use("/refreshToken", refreshTokenRouter);
 app.use("/currencies", currenciesRouter);
-app.use("/amount", amountRouter);
-app.use("/register", registerRouter);
+app.use("/balance", balanceRouter);
+app.use("/register", registrationRouter);
 app.use("/login", loginRouter);
 app.use(handleError);
 

@@ -98,4 +98,10 @@ export class LoginRecord implements Login {
       }
     );
   }
+
+  static async deleteOneById(id: string): Promise<void> {
+    await pool.execute("DELETE FROM `user_auth_token` WHERE `user_id` = :id", {
+      id,
+    });
+  }
 }
